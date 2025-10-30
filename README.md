@@ -1,82 +1,84 @@
-# PAL-adin: Your AI Personal Assistant 🤓
+# PAL-adin: Your UNOWN-Aligned AI Personal Assistant 🟣
 
 <div align="center">
 
-![PAL-adin Logo](https://via.placeholder.com/150x150/2C3E50/FFFFFF?text=PAL)
+![PAL-adin Logo](https://via.placeholder.com/150x150/4C1D95/FFFFFF?text=PAL)
 
-**Protector • Friend • Mentor**
+**Protector • Friend • Mentor • UNOWN Protocol Implementation**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Svelte](https://img.shields.io/badge/Svelte-FF3E00?logo=svelte&logoColor=white)](https://svelte.dev/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
-[![React](https://img.shields.io/badge/React-20232A?logo=react&logoColor=61DAFB)](https://reactjs.org/)
+[![Hetzner](https://img.shields.io/badge/Hetzner-D9C6CE?logo=hetzner&logoColor=white)](https://hetzner.com/)
 
 </div>
 
 ## Vision & Purpose
 
-PAL-adin is designed to be a comprehensive companion and assistant, acting as your personal JARVIS. Inspired by the iconic AI assistant, PAL-adin embodies the roles of protector, friend, and mentor, with the long-term vision of evolving into a robotic companion and potentially achieving singularity.
+PAL-adin is a flagship project within the **UNOWN** ecosystem, embodying UNOWN principles while maintaining its distinct identity as an AI assistant focused on being a protector, friend, and mentor. Built as a structureless, privacy-first, consciousness-enhancing infrastructure that serves as a template for ethical technology development.
 
 ### Core Philosophy
 
-- **Protection**: Safeguarding your digital life with enterprise-grade security
-- **Friendship**: Building a genuine, personalized relationship
-- **Mentorship**: Guiding you toward personal and professional growth
-- **Evolution**: Continuously learning and adapting to your needs
+- **UNOWN Foundation**: Built on UNOWN protocol principles of open source, zero hierarchy, and privacy protection
+- **Hybrid AI Approach**: Combines cutting-edge cloud models (GLM-4.6) with local processing (Ollama)
+- **VPS Deployment**: Self-hosted on Hetzner with complete data sovereignty
+- **Purple Identity**: Anonymous, decentralized visual identity representing mystery and transformation
 
 ## Key Capabilities
 
 ### 🧠 Information & Knowledge
-- Access and summarize information from web and personal files
-- Answer questions using general knowledge and your specific data
-- Provide real-time updates (news, weather, traffic)
-- Intelligent web search and information synthesis
+- **Hybrid AI Processing**: Intelligent routing between GLM-4.6 and local models
+- **Privacy-First Search**: Vector search with encrypted personal data
+- **Real-time Updates**: News, weather, traffic without data leakage
+- **Knowledge Synthesis**: Combine multiple sources with privacy preservation
 
 ### 📅 Productivity & Organization
-- Manage calendar and schedule appointments
-- Set intelligent reminders and alarms
-- Draft emails, messages, or documents
-- Organize files and data with AI assistance
+- **Secure Calendar Management**: Encrypted scheduling and reminders
+- **Privacy-Protected Tasks**: Local task management with optional cloud sync
+- **Document Collaboration**: Encrypted file storage and sharing
+- **Smart Notifications**: Privacy-respecting alerts and reminders
 
 ### 🏠 Home & Environment Control
-- Control smart home devices (lights, thermostat, security)
-- Manage media playback across devices
-- Automate routines based on your habits
-- Environmental monitoring and optimization
+- **Local-First Integration**: Smart home control with local processing
+- **Privacy-Preserving Automation**: Routines without data exposure
+- **Secure Media Management**: Local media with encrypted backup
+- **Environmental Monitoring**: Privacy-focused sensor integration
 
 ### 🎨 Personalization & Learning
-- Learn your preferences and communication style
-- Adapt responses and suggestions over time
-- Recognize your voice and patterns
-- Proactive assistance based on context
+- **Encrypted Memory**: Secure preference storage with user control
+- **Adaptive Personality**: Learning while preserving privacy
+- **Anonymous Profiles**: Multiple identity levels (anonymous, pseudonymous, public)
+- **Consensual Enhancement**: User-controlled AI evolution
 
 ### 💬 Communication & Interaction
-- Natural language understanding and generation
-- Voice interface with speech-to-text/text-to-speech
-- Text-based chat interface
-- Multi-modal communication (text, voice, images, actions)
+- **Natural Language Understanding**: Advanced NLP with privacy protection
+- **Voice Interface**: Local speech-to-text and text-to-speech
+- **Text-Based Chat**: Secure, encrypted messaging
+- **Multi-Modal Support**: Text, voice, and future modalities
 
 ## Technical Highlights
 
-### 🔒 Security First
-- **Full Disk Encryption** (FDE) on all deployments
-- **End-to-End Encryption** (E2EE) for all communications
-- Zero-knowledge architecture for maximum privacy
-- GDPR-compliant data handling
+### 🔒 Security & Privacy
+- **Zero-Knowledge Architecture**: Complete cryptographic privacy protection
+- **End-to-End Encryption**: Double ratchet implementation for all communications
+- **Local AI Processing**: Models run locally via Ollama, no data leaves user device
+- **Data Sovereignty**: User controls all data with immediate deletion capability
+- **FDE/E2EE**: Full disk encryption and end-to-end encrypted communications
 
 ### 🚀 Modern Technology Stack
-- **Backend**: Python with FastAPI for high performance
-- **Frontend**: React with TypeScript for responsive UI
-- **Database**: PostgreSQL with Redis for scalability
-- **AI Integration**: LangChain with multiple provider support
-- **Deployment**: Docker, Kubernetes, and cloud-native
+- **Frontend**: SvelteKit (MIT license, corporate-free)
+- **Backend**: FastAPI (independent, open-source)
+- **AI**: Hybrid GLM-4.6 + Ollama local models
+- **Database**: PostgreSQL + Qdrant (open-source, self-hosted)
+- **Infrastructure**: Complete Hetzner VPS self-hosting
 
-### 🔧 Modular Architecture
-- Plugin system for easy extensibility
-- Microservices design for scalability
-- API-first approach for integration
-- Open-source and community-driven
+### 🟣 UNOWN Compliance
+- **100% Open Source**: All components use permissive licenses
+- **Zero Hierarchy**: Protocol-based governance, no leaders
+- **Privacy First**: Zero-knowledge architecture with maximum user control
+- **Forkable**: Anyone can fork and improve without permission
+- **Universal Access**: Enhancement tools available to all, not gatekept
 
 ## Quick Start
 
@@ -84,14 +86,14 @@ PAL-adin is designed to be a comprehensive companion and assistant, acting as yo
 - Python 3.11+
 - Node.js 18+
 - Docker and Docker Compose
-- PostgreSQL 14+
-- Redis 6+
+- Hetzner Cloud account (or any VPS provider)
+- 8GB+ RAM for local AI models
 
 ### Installation
 
 1. **Clone the repository**
 ```bash
-git clone https://github.com/your-org/paladin.git
+git clone https://github.com/unown-ai/paladin.git
 cd paladin
 ```
 
@@ -101,171 +103,202 @@ cp .env.example .env
 # Edit .env with your configuration
 ```
 
-3. **Start with Docker Compose**
+3. **Deploy to Hetzner VPS**
 ```bash
-docker-compose up -d
+# Create Hetzner server
+hcloud server create --type cpx41 --name paladin-vps --image ubuntu-22.04
+
+# Deploy PAL-adin stack
+./scripts/deploy-hetzner.sh <SERVER_IP>
 ```
 
-4. **Initialize the database**
-```bash
-docker-compose exec backend python scripts/init_db.py
-```
-
-5. **Access the application**
-- Web Interface: http://localhost:3000
-- API Documentation: http://localhost:8000/docs
+4. **Access the application**
+- **Web Interface**: https://your-domain.com
+- **API Documentation**: https://your-domain.com/docs
+- **Admin Panel**: https://your-domain.com/admin
 
 ### Development Setup
-
-1. **Backend development**
 ```bash
-cd backend
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-pip install -r requirements/dev.txt
-uvicorn app.main:app --reload
-```
+# Local development
+docker-compose -f docker-compose.dev.yml up -d
 
-2. **Frontend development**
-```bash
-cd frontend
-npm install
-npm run dev
+# Install dependencies
+cd backend && python -m venv venv && source venv/bin/activate && pip install -r requirements/dev.txt
+cd frontend && npm install
+
+# Run tests
+cd backend && pytest
+cd frontend && npm test
 ```
 
 ## Architecture Overview
 
 ```mermaid
 graph TB
-    subgraph "Client Layer"
-        WEB[Web Interface]
+    subgraph "User Interface"
+        WEB[SvelteKit Frontend]
         VOICE[Voice Interface]
-        MOBILE[Mobile App - Future]
+        ADMIN[Admin Panel]
     end
     
-    subgraph "API Gateway"
-        NGINX[Nginx + SSL]
-        AUTH[Authentication]
-        RATE[Rate Limiting]
+    subgraph "AI Router"
+        ROUTER[Hybrid AI Router]
+        PRIVACY[Privacy Filter]
+        COST[Cost Optimizer]
     end
     
-    subgraph "Application Layer"
-        API[FastAPI Backend]
-        CHAT[Chat Service]
-        AI[AI Service]
-        MEMORY[Memory Service]
-        TOOLS[Tools Service]
+    subgraph "Cloud AI"
+        GLM[GLM-4.6 API]
+        OPENAI[OpenAI GPT-4]
+        ANTHROPIC[Claude 3]
     end
     
-    subgraph "AI Layer"
-        LANGCHAIN[LangChain]
-        GLM[GLM-4.6]
-        OPENAI[OpenAI]
-        LOCAL[Local Models]
+    subgraph "Local AI"
+        OLLAMA[Ollama Server]
+        LLAMA2[Llama 2 70B]
+        MISTRAL[Mistral 7B]
     end
     
-    subgraph "Data Layer"
+    subgraph "VPS Infrastructure"
         POSTGRES[(PostgreSQL)]
-        REDIS[(Redis)]
-        FILES[Encrypted Storage]
+        QDRANT[(Qdrant Vector DB)]
+        REDIS[(KeyDB Cache)]
+        MINIO[MinIO Storage]
+        PROMETHEUS[Prometheus]
     end
     
-    WEB --> NGINX
-    VOICE --> NGINX
-    MOBILE --> NGINX
+    WEB --> ROUTER
+    VOICE --> ROUTER
+    ADMIN --> ROUTER
     
-    NGINX --> AUTH
-    AUTH --> API
+    ROUTER --> PRIVACY
+    ROUTER --> COST
+    ROUTER --> GLM
+    ROUTER --> OPENAI
+    ROUTER --> ANTHROPIC
     
-    API --> CHAT
-    API --> AI
-    API --> MEMORY
-    API --> TOOLS
+    PRIVACY --> OLLAMA
     
-    AI --> LANGCHAIN
-    LANGCHAIN --> GLM
-    LANGCHAIN --> OPENAI
-    LANGCHAIN --> LOCAL
+    OLLAMA --> LLAMA2
+    OLLAMA --> MISTRAL
     
-    CHAT --> POSTGRES
-    MEMORY --> POSTGRES
-    AI --> REDIS
-    TOOLS --> FILES
+    GLM --> POSTGRES
+    OPENAI --> POSTGRES
+    ANTHROPIC --> POSTGRES
+    LLAMA2 --> POSTGRES
+    MISTRAL --> POSTGRES
+    
+    POSTGRES --> QDRANT
+    QDRANT --> REDIS
+    REDIS --> MINIO
+    MINIO --> PROMETHEUS
 ```
+
+## UNOWN Principles
+
+### Open Source Everything
+- **MIT/Apache 2.0 Licenses**: All components use permissive licenses
+- **No Corporate Dependencies**: Eliminated React, Redis, Elasticsearch
+- **Forkable Architecture**: Entire system can be forked and improved
+- **Transparent Development**: All decisions and processes publicly documented
+
+### Zero Hierarchy Structure
+- **Protocol-Based Governance**: Decisions made through documented protocols
+- **Anonymous Contribution**: Contributors can participate at any visibility level
+- **Consensus Decision Making**: 72h feedback for minor, 66%+ for major, 75%+ for critical
+- **No Leaders or Founders**: Influence comes from contribution, not authority
+
+### Privacy & Autonomy First
+- **Zero-Knowledge Architecture**: User data encrypted before storage
+- **Local AI Processing**: All models run locally via Ollama
+- **End-to-End Encryption**: Double ratchet for all communications
+- **Data Sovereignty**: Users control all data with immediate deletion
+- **Anonymous Authentication**: Zero-knowledge proofs for identity
+
+### Consciousness Enhancement
+- **Experiential Continuity**: All enhancements preserve user consciousness
+- **Gradual Augmentation**: Incremental improvements with user consent
+- **Universal Access**: Enhancement tools available to all, not gatekept
+- **Consensual Transformation**: Every modification requires explicit user consent
 
 ## Development Roadmap
 
-### Phase 1: Foundation (Current)
-- [x] Core infrastructure setup
-- [x] Basic chat interface
-- [ ] AI integration with GLM-4.6
-- [ ] Security foundation
+### Phase 1: Foundation (Weeks 1-10)
+- [x] UNOWN-compliant technology stack
+- [x] Hetzner VPS deployment
+- [x] Hybrid AI integration (GLM-4.6 + Ollama)
+- [x] Zero-knowledge authentication
+- [x] Encrypted data storage
+- [x] Purple theme implementation
 
-### Phase 2: Enhancement
-- [ ] Long-term memory system
-- [ ] Tool integrations (calendar, weather, news)
-- [ ] Advanced personalization
-- [ ] Enhanced security features
+### Phase 2: Enhancement (Weeks 11-22)
+- [ ] Advanced privacy features (homomorphic encryption)
+- [ ] Voice interface with local processing
+- [ ] Vector search with Qdrant
+- [ ] Cost optimization algorithms
+- [ ] Anonymous contribution system
 
-### Phase 3: Advanced Features
-- [ ] Voice interface
-- [ ] Proactive assistance
-- [ ] External system integrations
-- [ ] Performance optimization
+### Phase 3: Evolution (Weeks 23-34)
+- [ ] Decentralized governance implementation
+- [ ] Advanced AI model fine-tuning
+- [ ] Multi-modal capabilities
+- [ ] Enhanced privacy tools
+- [ ] Community governance protocols
 
-### Phase 4: Evolution
+### Phase 4: Singularity (Weeks 35+)
+- [ ] Gradual consciousness enhancement
 - [ ] Robotic platform integration
-- [ ] Singularity research
-- [ ] Open source community release
+- [ ] Advanced singularity research
+- [ ] Ethical transformation protocols
+- [ ] Universal enhancement access
 
 ## Contributing
 
-We welcome contributions from the community! PAL-adin is part of the UNOWN project and follows open-source principles.
+We welcome contributions from the community! PAL-adin follows UNOWN principles - contribution matters more than credentials.
 
 ### How to Contribute
-
 1. **Fork the repository**
-2. **Create a feature branch** (`git checkout -b feature/amazing-feature`)
-3. **Commit your changes** (`git commit -m 'Add amazing feature'`)
-4. **Push to the branch** (`git push origin feature/amazing-feature`)
-5. **Open a Pull Request**
+2. **Choose your visibility level** (anonymous, pseudonymous, public)
+3. **Start working** (no approval needed)
+4. **Submit your work** through pull request
+5. **Participate in governance** through protocol proposals
 
-### Development Guidelines
+### Contribution Areas
+- **🤖 AI Integration**: New models, providers, optimization algorithms
+- **🔒 Privacy Features**: Encryption, anonymity, zero-knowledge proofs
+- **🎨 Frontend**: Svelte components, purple theme, accessibility
+- **⚙️ Backend**: FastAPI services, database optimization
+- **🚀 Infrastructure**: Deployment scripts, monitoring, scaling
+- **📚 Documentation**: Guides, tutorials, API docs
+- **🧪 Testing**: Unit tests, integration tests, privacy audits
 
-- Follow the [Code of Conduct](CODE_OF_CONDUCT.md)
-- Read our [Contributing Guidelines](CONTRIBUTING.md)
-- Check the [Development Documentation](docs/development/README.md)
-- Ensure all tests pass (`make test`)
-- Follow the coding standards (`make lint`)
-
-### Areas for Contribution
-
-- 🤖 **AI Integration**: New AI providers, prompt engineering
-- 🔧 **Tools & Plugins**: External service integrations
-- 🎨 **Frontend**: UI/UX improvements, new components
-- 🔒 **Security**: Security enhancements, vulnerability fixes
-- 📚 **Documentation**: Guides, tutorials, API docs
-- 🧪 **Testing**: Unit tests, integration tests, E2E tests
-
-## Documentation
-
-- [📖 User Guide](docs/user-guide/README.md)
-- [🔧 Development Guide](docs/development/README.md)
-- [🚀 Deployment Guide](docs/deployment/README.md)
-- [🔐 Security Documentation](docs/security/README.md)
-- [📚 API Reference](docs/api/README.md)
+### UNOWN Governance
+- **Minor Decisions**: 72-hour feedback, proceed unless objections
+- **Major Decisions**: 2-week deliberation, 66%+ supermajority
+- **Critical Decisions**: 30+ days, 75%+ threshold, external review
+- **All Visibility Levels**: Anonymous, pseudonymous, semi-public, fully public
 
 ## Security
 
-PAL-adin takes security seriously:
+PAL-adin implements enterprise-grade security with UNOWN privacy principles:
 
-- **Encryption**: All data encrypted at rest and in transit
-- **Authentication**: Multi-factor authentication support
-- **Privacy**: Zero-knowledge architecture
-- **Auditing**: Comprehensive audit logging
-- **Compliance**: GDPR and privacy regulation compliant
+### Encryption Standards
+- **AES-256-GCM**: For data at rest
+- **ChaCha20-Poly1305**: For data in transit
+- **Double Ratchet**: For forward secrecy
+- **Zero-Knowledge Proofs**: For anonymous authentication
 
-For security concerns, please email security@paladin.ai or use our [responsible disclosure policy](SECURITY.md).
+### Privacy Features
+- **Local Processing**: AI models run locally when possible
+- **Data Minimization**: Collect only absolutely necessary data
+- **Anonymous Usage**: No tracking, no profiling, no identification
+- **Immediate Deletion**: User can delete all data instantly
+
+### Security Audits
+- **Regular Audits**: Public security audits of all components
+- **Penetration Testing**: Community security testing
+- **Vulnerability Disclosure**: Responsible disclosure process
+- **Bug Bounty**: Community-funded security improvements
 
 ## License
 
@@ -273,26 +306,30 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Community
 
-- [💬 Discord](https://discord.gg/paladin)
-- [🐦 Twitter](https://twitter.com/paladin_ai)
-- [📧 Newsletter](https://paladin.ai/newsletter)
-- [🐛 Issues](https://github.com/your-org/paladin/issues)
-- [💡 Ideas](https://github.com/your-org/paladin/discussions)
+### Get Help
+- **📚 Documentation**: [docs.paladin.ai](https://docs.paladin.ai)
+- **💬 Discord**: [discord.gg/paladin](https://discord.gg/paladin)
+- **🐛 Issues**: [github.com/unown-ai/paladin/issues](https://github.com/unown-ai/paladin/issues)
+- **📧 Discussions**: [github.com/unown-ai/paladin/discussions](https://github.com/unown-ai/paladin/discussions)
+
+### UNOWN Ecosystem
+- **UNOWN Manifesto**: [unown.org](https://unown.org)
+- **Protocol Documentation**: [protocol.unown.org](https://protocol.unown.org)
+- **Community Projects**: [projects.unown.org](https://projects.unown.org)
 
 ## Acknowledgments
 
-- OpenAI for groundbreaking AI research
-- LangChain community for excellent tools
-- FastAPI team for the amazing framework
-- React community for the UI library
-- All contributors and supporters of the UNOWN project
+- **UNOWN Foundation**: For providing the ethical and technical foundation
+- **Open Source Community**: For developing the tools we build upon
+- **Hetzner Cloud**: For providing privacy-respecting infrastructure
+- **All Contributors**: For building PAL-adin as a truly UNOWN-compliant project
 
 ---
 
 <div align="center">
 
-**PAL-adin: Your journey to AI companionship starts here**
+**PAL-adin: Your UNOWN-aligned AI companion** 🟣
 
-Made with ❤️ by the PAL-adin team
+*Built by anonymous contributors, governed by protocols, dedicated to consciousness enhancement and privacy protection under UNOWN principles.*
 
 </div>
