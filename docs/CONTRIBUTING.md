@@ -43,11 +43,11 @@ We are committed to making participation in our project a harassment-free experi
 
 ### Prerequisites
 
-- Python 3.11+
-- Node.js 18+
+- Python 3.12+
+- Node.js 20+ LTS
 - Docker and Docker Compose
 - Git
-- A code editor (we recommend VS Code)
+- A code editor (we recommend VS Code with Svelte extension)
 
 ### Development Environment Setup
 
@@ -195,55 +195,80 @@ def process_message(message: str, user_id: int) -> Dict[str, Any]:
     pass
 ```
 
-### TypeScript (Frontend)
+### TypeScript/JavaScript (Frontend - SvelteKit)
 
 #### Code Style
 - Use [Prettier](https://prettier.io/) for formatting
 - Use [ESLint](https://eslint.org/) for linting
-- Follow [React best practices](https://reactjs.org/docs/thinking-in-react.html)
+- Follow [Svelte best practices](https://svelte.dev/docs/svelte/overview)
+- Use TypeScript for type safety
 
-#### Component Structure
-```typescript
-import React, { useState, useEffect } from 'react';
-import { Button } from '@/components/common/Button';
-import { Message } from '@/types/chat';
-import { sendMessage } from '@/services/chatService';
+#### Component Structure (Svelte)
+```svelte
+<!-- ChatInterface.svelte -->
+<script lang="ts">
+  import { Button } from '$lib/components/common/Button.svelte';
+  import type { Message } from '$lib/types/chat';
+  import { sendMessage } from '$lib/services/chatService';
 
-interface ChatInterfaceProps {
-  userId: string;
-  onMessageSent?: (message: Message) => void;
-}
+  // Props
+  export let userId: string;
+  export let onMessageSent: ((message: Message) => void) | undefined = undefined;
 
-export const ChatInterface: React.FC<ChatInterfaceProps> = ({
-  userId,
-  onMessageSent,
-}) => {
-  const [messages, setMessages] = useState<Message[]>([]);
-  const [inputText, setInputText] = useState('');
-  const [isLoading, setIsLoading] = useState(false);
+  // State
+  let messages: Message[] = [];
+  let inputText = '';
+  let isLoading = false;
 
-  const handleSendMessage = async (): Promise<void> => {
+  async function handleSendMessage(): Promise<void> {
     if (!inputText.trim()) return;
 
-    setIsLoading(true);
+    isLoading = true;
     try {
       const response = await sendMessage(userId, inputText);
-      setMessages(prev => [...prev, response]);
+      messages = [...messages, response];
       onMessageSent?.(response);
-      setInputText('');
+      inputText = '';
     } catch (error) {
       console.error('Failed to send message:', error);
     } finally {
-      setIsLoading(false);
+      isLoading = false;
     }
-  };
+  }
+</script>
 
-  return (
-    <div className="chat-interface">
-      {/* Component JSX */}
-    </div>
-  );
-};
+<div class="chat-interface">
+  <!-- Component markup -->
+  <div class="messages">
+    {#each messages as message (message.id)}
+      <div class="message">{message.content}</div>
+    {/each}
+  </div>
+
+  <form on:submit|preventDefault={handleSendMessage}>
+    <input
+      bind:value={inputText}
+      placeholder="Type your message..."
+      disabled={isLoading}
+    />
+    <Button type="submit" disabled={isLoading}>
+      {isLoading ? 'Sending...' : 'Send'}
+    </Button>
+  </form>
+</div>
+
+<style>
+  .chat-interface {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .messages {
+    flex: 1;
+    overflow-y: auto;
+  }
+</style>
 ```
 
 ## Testing Guidelines
@@ -296,40 +321,84 @@ async def test_chat_endpoint():
 
 ### Frontend Testing
 
-#### Component Tests
+#### Component Tests (Svelte)
 ```typescript
-import React from 'react';
-import { render, screen, fireEvent, waitFor } from '@testing-library/react';
-import { ChatInterface } from '@/components/chat/ChatInterface';
-import { sendMessage } from '@/services/chatService';
+import { render, screen, fireEvent } from '@testing-library/svelte';
+import { describe, it, expect, vi, beforeEach } from 'vitest';
+import ChatInterface from '$lib/components/chat/ChatInterface.svelte';
+import * as chatService from '$lib/services/chatService';
 
-jest.mock('@/services/chatService');
-const mockSendMessage = sendMessage as jest.MockedFunction<typeof sendMessage>;
+// Mock the chat service
+vi.mock('$lib/services/chatService');
 
 describe('ChatInterface', () => {
   beforeEach(() => {
-    mockSendMessage.mockClear();
+    vi.clearAllMocks();
   });
 
   it('should send message when form is submitted', async () => {
+    // Setup mock
+    const mockSendMessage = vi.spyOn(chatService, 'sendMessage');
     mockSendMessage.mockResolvedValue({
       id: '1',
       content: 'Hello back!',
       timestamp: new Date().toISOString(),
     });
 
-    render(<ChatInterface userId="test-user" />);
-    
+    // Render component
+    const { component } = render(ChatInterface, {
+      props: { userId: 'test-user' }
+    });
+
+    // Get elements
     const input = screen.getByPlaceholderText('Type your message...');
     const sendButton = screen.getByRole('button', { name: 'Send' });
 
-    fireEvent.change(input, { target: { value: 'Hello!' } });
-    fireEvent.click(sendButton);
+    // Simulate user input
+    await fireEvent.input(input, { target: { value: 'Hello!' } });
+    await fireEvent.click(sendButton);
 
-    await waitFor(() => {
-      expect(mockSendMessage).toHaveBeenCalledWith('test-user', 'Hello!');
-    });
+    // Assert
+    expect(mockSendMessage).toHaveBeenCalledWith('test-user', 'Hello!');
   });
+
+  it('should disable input while sending', async () => {
+    const { component } = render(ChatInterface, {
+      props: { userId: 'test-user' }
+    });
+
+    const input = screen.getByPlaceholderText('Type your message...');
+    const sendButton = screen.getByRole('button', { name: 'Send' });
+
+    await fireEvent.input(input, { target: { value: 'Test' } });
+
+    // Check initial state
+    expect(input).not.toBeDisabled();
+
+    // Note: Testing loading state requires waiting for async operation
+  });
+});
+```
+
+#### Integration Tests (SvelteKit)
+```typescript
+import { expect, test } from '@playwright/test';
+
+test('chat interface loads and sends message', async ({ page }) => {
+  await page.goto('/chat');
+
+  // Wait for chat interface to load
+  await expect(page.locator('.chat-interface')).toBeVisible();
+
+  // Type a message
+  const input = page.locator('input[placeholder="Type your message..."]');
+  await input.fill('Hello, PAL-adin!');
+
+  // Send message
+  await page.click('button:has-text("Send")');
+
+  // Verify message appears
+  await expect(page.locator('.message')).toContainText('Hello, PAL-adin!');
 });
 ```
 
@@ -449,15 +518,15 @@ Any additional context or considerations.
 
 ### Getting Help
 
-- **Discord**: Join our [Discord server](https://discord.gg/paladin)
 - **GitHub Issues**: Report bugs or request features
-- **Discussions**: Ask questions and share ideas
+- **GitHub Discussions**: Ask questions and share ideas
+- **Documentation**: Check `/docs` directory for guides
 
 ### Recognition
 
-- Contributors are recognized in our README
-- Top contributors get special Discord roles
-- Annual contributor appreciation awards
+- Contributors are recognized in our README and CONTRIBUTORS.md
+- Top contributors get GitHub profile badges and highlights
+- Annual contributor appreciation recognition in project updates
 
 ### Ways to Contribute
 

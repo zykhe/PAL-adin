@@ -114,8 +114,8 @@ services:
       dockerfile: Dockerfile.svelte
     environment:
       - NODE_ENV=production
-      - VITE_API_URL=https://api.paladin.ai
-      - VITE_WS_URL=wss://api.paladin.ai
+      - VITE_API_URL=https://your-domain.com/api
+      - VITE_WS_URL=wss://your-domain.com/ws
     ports:
       - "3000:3000"
     networks:
@@ -645,8 +645,8 @@ cd /opt/paladin/monitoring
 docker-compose -f /opt/paladin/docker-compose.hetzner.yml up -d
 
 echo "✅ PAL-adin deployed on Hetzner VPS"
-echo "🌐 API: https://api.paladin.ai"
-echo "🔧 Admin: https://admin.paladin.ai"
+echo "🌐 API: https://your-domain.com/api"
+echo "🔧 Admin: https://your-domain.com/admin"
 ```
 
 ### Performance Monitoring

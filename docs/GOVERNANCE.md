@@ -2,204 +2,258 @@
 
 ## Overview
 
-PAL-adin is an open-source project under the UNOWN initiative, governed by a community-driven approach that ensures transparency, inclusivity, and technical excellence. This document outlines the governance structure, decision-making processes, and community guidelines.
+PAL-adin is an open-source project under the UNOWN initiative, governed by protocol-based consensus that ensures transparency, inclusivity, and technical excellence. This document outlines the governance protocols, decision-making processes, and community guidelines.
 
 ## Mission Statement
 
-To create a secure, privacy-focused AI assistant that evolves from a helpful companion to a true digital friend, while maintaining open-source principles and community ownership.
+To create a secure, privacy-focused AI assistant that evolves from a helpful companion to a true digital friend, while maintaining open-source principles and community ownership under UNOWN's zero-hierarchy framework.
 
 ## Core Values
 
 - **Privacy First**: User data protection and encryption are non-negotiable
 - **Open Source**: All code and documentation should be freely available
-- **Community Driven**: Decisions are made with community input
+- **Zero Hierarchy**: No leaders, founders, or permanent authority roles
+- **Protocol-Driven**: Decisions made through documented consensus protocols
 - **Security Focused**: Security is a primary consideration in all decisions
 - **Inclusive**: Welcome contributors from all backgrounds and experience levels
+- **Anonymous Contribution**: Contributors can participate at any visibility level
 - **Innovative**: Push the boundaries of AI assistant technology
 
 ## Governance Structure
 
-### Leadership Roles
+### Zero-Hierarchy Protocol-Based Governance
 
-#### Project Lead
-- **Responsibilities**: Overall project vision, strategic direction, final decision authority
-- **Term**: 2 years, with possibility of renewal
-- **Selection**: Community election with 70% majority vote
+PAL-adin operates without formal leadership roles, titles, or permanent authority positions. Instead, we use documented protocols and consensus mechanisms for decision-making.
 
-#### Technical Committee
-- **Composition**: 5-7 technical experts from different domains
-- **Responsibilities**: 
-  - Technical architecture decisions
-  - Code review standards
-  - Security policy enforcement
-  - Release management
-- **Term**: 1 year, staggered elections
+### Visibility Levels for Contributors
 
-#### Community Manager
-- **Responsibilities**: 
-  - Community engagement and growth
-  - Conflict resolution
-  - Contributor recognition
-  - Documentation oversight
-- **Term**: 1 year
+Contributors can participate at any level of visibility they choose:
 
-#### Security Lead
-- **Responsibilities**:
-  - Security policy development
-  - Vulnerability management
-  - Security audit coordination
-  - Incident response leadership
-- **Term**: 2 years
+- **Anonymous**: No identity disclosure, contributions via secure channels
+- **Pseudonymous**: Consistent pseudonym without real identity
+- **Semi-Public**: Partial identity disclosure (e.g., first name, region)
+- **Fully Public**: Full identity disclosure
 
-### Subcommittees
+**All visibility levels have equal decision-making power based on contribution quality, not identity.**
 
-#### Security Committee
+### Working Groups (Temporary, Rotating)
+
+Working groups are temporary, self-organizing teams focused on specific domains. Participation is voluntary and rotates naturally based on availability and interest.
+
+#### Security Working Group
 - **Focus**: Security policies, vulnerability management, security audits
-- **Meeting Frequency**: Monthly
-- **Decision Process**: Consensus-based with security lead tie-breaker
+- **Coordination**: Asynchronous via secure channels
+- **Decision Process**: Consensus protocol (detailed below)
+- **Participation**: Open to all contributors, no approval needed
 
-#### Documentation Committee
+#### Documentation Working Group
 - **Focus**: Documentation standards, user guides, API documentation
-- **Meeting Frequency**: Bi-weekly
-- **Decision Process**: Majority vote
+- **Coordination**: Asynchronous collaboration
+- **Decision Process**: Consensus protocol
+- **Participation**: Open to all contributors, no approval needed
 
-#### Outreach Committee
-- **Focus**: Community growth, partnerships, promotional activities
-- **Meeting Frequency**: Monthly
-- **Decision Process**: Consensus-based
+#### Development Working Group
+- **Focus**: Code architecture, features, technical implementation
+- **Coordination**: GitHub discussions and PRs
+- **Decision Process**: Consensus protocol
+- **Participation**: Open to all contributors, no approval needed
 
 ## Decision Making Process
 
+### Protocol-Based Consensus (No Voting Hierarchy)
+
+All decisions use time-boxed consensus protocols. There are no voting hierarchies - all contributors have equal voice based on their engagement with the specific issue, not their status or contribution count.
+
 ### Types of Decisions
 
-#### Technical Decisions
-- **Scope**: Architecture changes, major feature additions, dependency updates
-- **Process**: 
-  1. Technical proposal creation
-  2. Community discussion (minimum 7 days)
-  3. Technical committee review
-  4. Vote (simple majority)
-
-#### Security Decisions
-- **Scope**: Security policies, vulnerability disclosures, incident response
+#### Minor Decisions (72-Hour Feedback Protocol)
+- **Scope**: Bug fixes, documentation updates, minor improvements, dependency patches
 - **Process**:
-  1. Security committee assessment
-  2. Risk analysis
-  3. Rapid response (24-48 hours for critical issues)
-  4. Community notification
+  1. Proposal posted publicly (GitHub issue/discussion)
+  2. 72-hour feedback period
+  3. If no objections with technical merit, proceed
+  4. If objections raised, move to Standard Decision protocol
+- **Implementation**: Proposer can implement after feedback period
 
-#### Governance Decisions
-- **Scope**: Bylaw changes, role elections, policy updates
+#### Standard Decisions (2-Week Deliberation Protocol)
+- **Scope**: New features, architecture changes, significant refactoring, API changes
 - **Process**:
-  1. Proposal submission
-  2. Community discussion (minimum 14 days)
-  3. Community vote (70% majority required)
+  1. Detailed proposal with rationale and implementation plan
+  2. 2-week public discussion period
+  3. Address concerns and iterate on proposal
+  4. Achieve rough consensus (general agreement, objections addressed)
+  5. If consensus not reached, extend discussion or seek alternative approaches
+- **Consensus Threshold**: No strong objections remaining after discussion
 
-### Voting Rights
+#### Major Decisions (30-Day Community Protocol)
+- **Scope**: Major architectural changes, governance protocol changes, security model changes
+- **Process**:
+  1. Comprehensive proposal with multiple alternatives analyzed
+  2. 30-day public discussion period
+  3. Multiple rounds of feedback and iteration
+  4. External expert review (if applicable)
+  5. Achieve broad consensus across working groups
+  6. Document dissenting views and how they were addressed
+- **Consensus Threshold**: Broad agreement with documented consideration of all perspectives
 
-- **Full Voting Rights**: Active contributors with 10+ merged PRs
-- **Limited Voting Rights**: Contributors with 1-9 merged PRs
-- **Observer Rights**: Community members without contributions
+#### Critical Security Decisions (Rapid Response Protocol)
+- **Scope**: Security vulnerabilities, immediate threats, privacy breaches
+- **Process**:
+  1. Private disclosure to Security Working Group
+  2. Rapid assessment (4-24 hours)
+  3. Immediate action if critical
+  4. Community notification after fix deployed
+  5. Post-incident public review
+- **Authority**: Any contributor can trigger security protocol
 
-### Conflict Resolution
+### Consensus Criteria
 
-#### Step 1: Direct Discussion
-- Parties attempt to resolve directly
-- Community manager available for mediation
+A proposal has reached consensus when:
+1. **Adequate deliberation time** has passed for the decision type
+2. **Active objections addressed**: All technical objections have been discussed and either resolved or documented with rationale for proceeding
+3. **No blocking concerns**: No unresolved concerns that would break core principles (privacy, security, zero-hierarchy, open source)
+4. **Rough agreement**: General agreement among engaged contributors, even if not unanimous
 
-#### Step 2: Committee Review
-- Relevant committee reviews the issue
-- Recommendations provided
+### Conflict Resolution Protocol
 
-#### Step 3: Community Vote
-- For unresolved conflicts
-- 70% majority required for resolution
+#### Stage 1: Direct Discussion (0-7 days)
+- Conflicting parties discuss directly in public forum
+- Focus on technical merits and UNOWN principles
+- Any contributor can participate in discussion
+- No mediators or authorities
+
+#### Stage 2: Extended Deliberation (7-21 days)
+- If Stage 1 doesn't resolve, extend discussion period
+- Invite broader community input
+- Explore alternative solutions
+- Document all perspectives
+
+#### Stage 3: Protocol Clarification (21+ days)
+- If still unresolved, recognize that current protocols may be unclear
+- Initiate governance protocol improvement discussion
+- Defer original decision until protocol is clarified
+- Focus on improving decision-making process itself
 
 ## Contribution Guidelines
 
-### Contributor Levels
+### Contribution Recognition (Not Hierarchy)
 
-#### Core Contributors
-- **Requirements**: 50+ merged PRs, active participation for 6+ months
-- **Benefits**: Voting rights, committee eligibility, direct commit access
+All contributors have equal decision-making power regardless of contribution count. Recognition is about celebrating contributions, not creating privilege levels.
 
-#### Active Contributors
-- **Requirements**: 10-49 merged PRs, regular participation
-- **Benefits**: Limited voting rights, committee consideration
+#### Recognition Levels (For Celebration Only)
 
-#### Community Members
-- **Requirements**: Any community participation
-- **Benefits**: Discussion participation, issue reporting
+**New Contributors**
+- **Milestone**: First merged contribution
+- **Recognition**: Welcome message, contributor badge
+- **Decision Power**: Equal to all other contributors
+
+**Regular Contributors**
+- **Milestone**: 10+ merged contributions
+- **Recognition**: Listed in CONTRIBUTORS.md, special badge
+- **Decision Power**: Equal to all other contributors
+
+**Sustained Contributors**
+- **Milestone**: 50+ contributions over 6+ months
+- **Recognition**: Featured in project updates, optional profile highlight
+- **Decision Power**: Equal to all other contributors
+
+**Note**: Recognition levels do NOT grant special voting rights, veto power, or authority over other contributors. All contributors participate equally in consensus-building processes.
+
+### Repository Access
+
+- **Read Access**: Public, anyone can view and fork
+- **Issue/Discussion Access**: Anyone can create and comment
+- **Pull Request Access**: Anyone can submit
+- **Merge Access**: Granted based on demonstrated technical competency and UNOWN principles alignment, not contribution count
+  - Request merge access after 5+ quality PRs
+  - Granted through consensus of current merge-access holders
+  - Can be revoked if misused (reverts through consensus)
 
 ### Code of Conduct Enforcement
 
 #### Reporting Process
-1. **Report**: Submit confidential report to conduct@paladin.ai
-2. **Review**: Community manager and security lead review within 48 hours
-3. **Action**: Appropriate action taken within 7 days
-4. **Follow-up**: Resolution communicated to relevant parties
+1. **Report**: Submit confidential report via GitHub Security Advisory or create a private issue
+2. **Review**: Security Working Group reviews within 48 hours (rotating reviewers)
+3. **Community Discussion**: Non-confidential aspects discussed publicly (respecting privacy)
+4. **Action**: Appropriate action determined through consensus
+5. **Follow-up**: Resolution communicated to affected parties
 
-#### Enforcement Actions
-- **Warning**: For minor violations
-- **Temporary Suspension**: For repeated or serious violations
+#### Enforcement Actions (Applied Through Consensus)
+- **Warning**: For minor violations, public or private depending on severity
+- **Temporary Suspension**: For repeated or serious violations (7-90 days)
 - **Permanent Ban**: For severe violations or criminal behavior
+- **Appeals**: Any action can be appealed, reviewed by different rotating group
 
 ## Release Management
 
 ### Release Cadence
-- **Major Releases**: Every 6 months
-- **Minor Releases**: Monthly
-- **Patch Releases**: As needed for security fixes
+- **Major Releases**: Every 6 months (following 30-day protocol)
+- **Minor Releases**: Monthly (following 2-week protocol)
+- **Patch Releases**: As needed for security/critical fixes (following rapid response protocol)
 
-### Release Process
-1. **Feature Freeze**: 2 weeks before release
-2. **Testing Period**: 1 week of comprehensive testing
-3. **Security Review**: Security committee approval
-4. **Community Vote**: Technical committee approval
-5. **Release**: Coordinated deployment
+### Release Process (Consensus-Based)
+1. **Feature Freeze Proposal**: Posted 3 weeks before target release date
+2. **Testing Period**: 1-2 weeks of comprehensive community testing
+3. **Security Review**: Security Working Group reviews (any contributor can participate)
+4. **Community Consensus**: 1-week final review period, address any blocking concerns
+5. **Release**: Coordinated deployment once consensus achieved
 
 ### Versioning Policy
 - **Semantic Versioning**: MAJOR.MINOR.PATCH
-- **Breaking Changes**: Only in major versions
+- **Breaking Changes**: Only in major versions (requires 30-day protocol)
 - **Backward Compatibility**: Maintained for at least 2 major versions
+- **Version Decisions**: Made through appropriate consensus protocol based on scope
 
 ## Security Policy
 
-### Vulnerability Disclosure
-- **Private Reporting**: security@paladin.ai
-- **Response Time**: 48 hours for initial response
-- **Disclosure Timeline**: 90 days from report to public disclosure
-- **Bounty Program**: Recognition and potential rewards for security researchers
+### Vulnerability Disclosure (Anonymous Reporting Supported)
+- **Reporting Channels**:
+  - GitHub Security Advisories (preferred)
+  - GitHub Issues (for non-critical vulnerabilities)
+  - Private disclosure via encrypted communication (details in SECURITY.md)
+- **Response Protocol**:
+  - Initial acknowledgment: 24-48 hours
+  - Assessment by Security Working Group (rotating members)
+  - Regular updates to reporter via GitHub
+- **Disclosure Timeline**: 90 days from report to public disclosure (negotiable with reporter)
+- **Recognition Program**: Credit to reporters (anonymous credit option available)
 
 ### Security Audits
-- **Frequency**: Annual comprehensive audit
+- **Frequency**: Annual comprehensive audit minimum
 - **Scope**: All critical components and dependencies
 - **Public Reports**: Summary reports published (no sensitive details)
+- **Audit Selection**: Community consensus on audit firm/individuals
+- **Volunteer Audits**: Security researchers welcome to audit and report
 
-### Incident Response
-- **Critical**: Response within 4 hours, resolution within 24 hours
-- **High**: Response within 24 hours, resolution within 72 hours
-- **Medium**: Response within 72 hours, resolution within 1 week
-- **Low**: Response within 1 week, resolution within 2 weeks
+### Incident Response (No Single Authority)
+Severity assessment and response coordinated by Security Working Group members (rotating, no permanent lead):
+
+- **Critical**: Assessment within 4 hours, resolution target 24 hours
+- **High**: Assessment within 24 hours, resolution target 72 hours
+- **Medium**: Assessment within 72 hours, resolution target 1 week
+- **Low**: Assessment within 1 week, resolution target 2 weeks
+
+All security decisions documented and reviewed post-incident by broader community.
 
 ## Community Guidelines
 
 ### Communication Channels
 - **GitHub Issues**: Bug reports, feature requests, technical discussions
-- **Discord**: Community chat, real-time discussions, support
-- **Mailing List**: Announcements, major discussions
-- **Forums**: In-depth technical discussions, tutorials
+- **GitHub Discussions**: Community conversations, Q&A, support
+- **GitHub Wiki**: In-depth technical discussions, tutorials, guides
+- **Pull Requests**: Code contributions, reviews, technical collaboration
 
-### Meeting Schedule
-- **Community Meeting**: Monthly, first Thursday
-- **Technical Committee**: Bi-weekly, second and fourth Thursday
-- **Security Committee**: Monthly, third Thursday
-- **Documentation Committee**: Bi-weekly, first and third Tuesday
+### Coordination Schedule
+All coordination happens asynchronously via GitHub to support anonymous and global participation:
+- **Working Group Syncs**: Posted as GitHub Discussions monthly
+- **Security Reviews**: Coordinated via private security advisories as needed
+- **Release Planning**: Tracked via GitHub Projects and milestones
+- **Community Updates**: Posted as GitHub Discussions weekly/bi-weekly
 
 ### Recognition Program
-- **Contributor of the Month**: Recognized in newsletter and Discord
-- **Top Contributors**: Special Discord roles and GitHub badges
-- **Annual Awards**: Recognition at community meeting
+- **Contributor Recognition**: Featured in project README and GitHub discussions
+- **Top Contributors**: GitHub badges and profile highlights
+- **Annual Recognition**: Celebration in GitHub discussions and project updates
 
 ## Financial Management
 
@@ -220,30 +274,44 @@ To create a secure, privacy-focused AI assistant that evolves from a helpful com
 - **Annual Report**: Comprehensive financial and project review
 - **Public Budget**: All income and expenses publicly disclosed
 
-## Amendment Process
+## Protocol Amendment Process
 
-### Bylaw Changes
-1. **Proposal**: Any community member can propose changes
-2. **Discussion**: Minimum 30-day discussion period
-3. **Vote**: 70% majority of full voting members
-4. **Implementation**: Changes take effect 30 days after approval
+### Governance Protocol Changes
+1. **Proposal**: Any community member can propose protocol changes
+2. **Discussion**: Minimum 30-day discussion period (Major Decision protocol)
+3. **Consensus Building**: Address all concerns, iterate on proposal
+4. **Implementation**: Changes take effect after consensus achieved + 14-day transition period
+5. **No Voting**: Changes adopted through consensus, not majority vote
 
-### Emergency Amendments
-- **Scope**: Critical security or legal issues
-- **Process**: Immediate implementation with 7-day community review
-- **Approval**: 80% majority required for ratification
+### Emergency Protocol Amendments
+- **Scope**: Critical security issues, legal compliance, immediate operational needs
+- **Process**:
+  1. Immediate temporary implementation to address crisis
+  2. Public disclosure of change and rationale within 48 hours
+  3. 7-day community review and discussion
+  4. Consensus-building on permanent protocol update
+  5. Rollback if consensus not achieved
+- **Authority**: Any contributor can invoke emergency protocol (must justify urgency)
 
 ## Contact Information
 
 ### Official Channels
-- **Email**: governance@paladin.ai
-- **Discord**: https://discord.gg/paladin
-- **GitHub**: https://github.com/paladin-ai/paladin
-- **Website**: https://paladin.ai
+- **GitHub Repository**: https://github.com/unown-ai/paladin
+- **GitHub Issues**: For bug reports and feature requests
+- **GitHub Discussions**: For questions, ideas, and community discussion
+- **GitHub Security**: For security vulnerabilities (private disclosure)
 
-### Leadership Contacts
-- **Project Lead**: lead@paladin.ai
-- **Security**: security@paladin.ai
-- **Community Manager**: community@paladin.ai
+### Working Group Coordination (Rotating, No Permanent Leaders)
+All working groups coordinate asynchronously via GitHub:
+- **Security Working Group**: GitHub Security Advisories and private issues
+- **Development Working Group**: GitHub Discussions tagged `#development`
+- **Documentation Working Group**: GitHub Discussions tagged `#documentation`
+- **General Inquiries**: GitHub Discussions tagged `#general`
 
-This governance document ensures PAL-adin remains a community-driven, secure, and innovative project that serves the best interests of its users and contributors while maintaining the highest standards of open-source development.
+**Note**: All communication is public and asynchronous to support anonymous contribution and global participation.
+
+---
+
+This governance document ensures PAL-adin remains a truly decentralized, community-driven, secure, and innovative project that serves the best interests of its users and contributors while maintaining UNOWN's zero-hierarchy principles and the highest standards of open-source development.
+
+**Living Document**: This governance protocol is continuously improved through community consensus. Propose changes anytime via GitHub discussions.

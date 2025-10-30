@@ -34,7 +34,7 @@ services:
       dockerfile: Dockerfile.self-hosted
     environment:
       - DATABASE_URL=postgresql://paladin:${DB_PASSWORD}@postgres:5432/paladin
-      - REDIS_URL=redis://redis:6379
+      - REDIS_URL=redis://:${REDIS_PASSWORD}@keydb:6379
       - AI_MODELS_PATH=/app/models
       - LOCAL_AI_ONLY=true
     volumes:
@@ -45,7 +45,7 @@ services:
       - "8000:8000"
     depends_on:
       - postgres
-      - redis
+      - keydb
       - ollama
     restart: unless-stopped
 
@@ -62,11 +62,12 @@ services:
       - "5432:5432"
     restart: unless-stopped
 
-  # Redis Cache
-  redis:
+  # KeyDB Cache (Redis alternative - open source)
+  keydb:
     image: eqalpha/keydb:latest
+    command: keydb-server --requirepass ${REDIS_PASSWORD}
     volumes:
-      - redis_data:/data
+      - keydb_data:/data
     ports:
       - "6379:6379"
     restart: unless-stopped
@@ -99,7 +100,7 @@ services:
 
 volumes:
   postgres_data:
-  redis_data:
+  keydb_data:
   ollama_data:
   models:
   config:
@@ -170,7 +171,7 @@ generate_passwords() {
     cat > .env << EOF
 # PAL-adin Self-Hosted Configuration
 DATABASE_URL=postgresql://paladin:${DB_PASSWORD}@postgres:5432/paladin
-REDIS_URL=redis://redis:6379
+REDIS_URL=redis://:${REDIS_PASSWORD}@keydb:6379
 ENCRYPTION_KEY=${ENCRYPTION_KEY}
 JWT_SECRET=${JWT_SECRET}
 LOCAL_AI_ONLY=true
@@ -288,7 +289,7 @@ main() {
     echo "3. Configure AI models and privacy settings"
     echo "4. Enjoy your private AI assistant!"
     echo ""
-    echo "📚 Documentation: https://docs.paladin.ai/self-hosting"
+    echo "📚 Documentation: See /docs directory in repository"
     echo "🐛 Issues: https://github.com/unown-ai/paladin/issues"
     echo "======================================"
 }
@@ -754,9 +755,9 @@ class UpdateManager:
         """Check for available updates"""
         
         try:
-            # Fetch update manifest
+            # Fetch update manifest from GitHub releases
             response = requests.get(
-                "https://updates.paladin.ai/manifest.json",
+                "https://api.github.com/repos/unown-ai/paladin/releases/latest",
                 timeout=10
             )
             response.raise_for_status()

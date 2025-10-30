@@ -7,7 +7,8 @@
 **Protector • Friend • Mentor • UNOWN Protocol Implementation**
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Python 3.11+](https://img.shields.io/badge/python-3.11+-blue.svg)](https://www.python.org/downloads/)
+[![Python 3.12+](https://img.shields.io/badge/python-3.12+-blue.svg)](https://www.python.org/downloads/)
+[![Node.js 20+](https://img.shields.io/badge/node.js-20+-green.svg)](https://nodejs.org/)
 [![Svelte](https://img.shields.io/badge/Svelte-FF3E00?logo=svelte&logoColor=white)](https://svelte.dev/)
 [![FastAPI](https://img.shields.io/badge/FastAPI-009688?logo=fastapi&logoColor=white)](https://fastapi.tiangolo.com/)
 [![Hetzner](https://img.shields.io/badge/Hetzner-D9C6CE?logo=hetzner&logoColor=white)](https://hetzner.com/)
@@ -83,11 +84,11 @@ PAL-adin is a flagship project within the **UNOWN** ecosystem, embodying UNOWN p
 ## Quick Start
 
 ### Prerequisites
-- Python 3.11+
-- Node.js 18+
+- Python 3.12+
+- Node.js 20+ LTS
 - Docker and Docker Compose
 - Hetzner Cloud account (or any VPS provider)
-- 8GB+ RAM for local AI models
+- 8GB+ RAM for local AI models (16GB+ recommended)
 
 ### Installation
 
@@ -307,15 +308,13 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 ## Community
 
 ### Get Help
-- **📚 Documentation**: [docs.paladin.ai](https://docs.paladin.ai)
-- **💬 Discord**: [discord.gg/paladin](https://discord.gg/paladin)
+- **📚 Documentation**: See `/docs` directory in this repository
 - **🐛 Issues**: [github.com/unown-ai/paladin/issues](https://github.com/unown-ai/paladin/issues)
-- **📧 Discussions**: [github.com/unown-ai/paladin/discussions](https://github.com/unown-ai/paladin/discussions)
+- **💬 Discussions**: [github.com/unown-ai/paladin/discussions](https://github.com/unown-ai/paladin/discussions)
 
 ### UNOWN Ecosystem
-- **UNOWN Manifesto**: [unown.org](https://unown.org)
-- **Protocol Documentation**: [protocol.unown.org](https://protocol.unown.org)
-- **Community Projects**: [projects.unown.org](https://projects.unown.org)
+- **UNOWN Principles**: See GOVERNANCE.md and project documentation
+- **Community Projects**: Fork and contribute via GitHub
 
 ## Acknowledgments
 
