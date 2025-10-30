@@ -132,67 +132,6 @@ cd backend && pytest
 cd frontend && npm test
 ```
 
-## Architecture Overview
-
-```mermaid
-graph TB
-    subgraph "User Interface"
-        WEB[SvelteKit Frontend]
-        VOICE[Voice Interface]
-        ADMIN[Admin Panel]
-    end
-    
-    subgraph "AI Router"
-        ROUTER[Hybrid AI Router]
-        PRIVACY[Privacy Filter]
-        COST[Cost Optimizer]
-    end
-    
-    subgraph "Cloud AI"
-        GLM[GLM-4.6 API]
-        OPENAI[OpenAI GPT-5]
-        ANTHROPIC[Claude 4.5]
-    end
-    
-    subgraph "Local AI"
-        OLLAMA[Ollama Server]
-    end
-    
-    subgraph "VPS Infrastructure"
-        POSTGRES[(PostgreSQL)]
-        QDRANT[(Qdrant Vector DB)]
-        REDIS[(KeyDB Cache)]
-        MINIO[MinIO Storage]
-        PROMETHEUS[Prometheus]
-    end
-    
-    WEB --> ROUTER
-    VOICE --> ROUTER
-    ADMIN --> ROUTER
-    
-    ROUTER --> PRIVACY
-    ROUTER --> COST
-    ROUTER --> GLM
-    ROUTER --> OPENAI
-    ROUTER --> ANTHROPIC
-    
-    PRIVACY --> OLLAMA
-    
-    OLLAMA --> LLAMA2
-    OLLAMA --> MISTRAL
-    
-    GLM --> POSTGRES
-    OPENAI --> POSTGRES
-    ANTHROPIC --> POSTGRES
-    LLAMA2 --> POSTGRES
-    MISTRAL --> POSTGRES
-    
-    POSTGRES --> QDRANT
-    QDRANT --> REDIS
-    REDIS --> MINIO
-    MINIO --> PROMETHEUS
-```
-
 ## UNOWN Principles
 
 ### Open Source Everything
