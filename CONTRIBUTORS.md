@@ -109,4 +109,4 @@ All contributors are expected to follow our Code of Conduct (see [CONTRIBUTING.m
 
 **Note**: This list is maintained by the community. If you've contributed and aren't listed, please open a PR to add yourself (if you choose to be public) or let us know and we'll add you.
 
-**Last Updated**: 2025-01-30
+**Last Updated**: 2025-10-31

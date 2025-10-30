@@ -150,14 +150,12 @@ graph TB
     
     subgraph "Cloud AI"
         GLM[GLM-4.6 API]
-        OPENAI[OpenAI GPT-4]
-        ANTHROPIC[Claude 3]
+        OPENAI[OpenAI GPT-5]
+        ANTHROPIC[Claude 4.5]
     end
     
     subgraph "Local AI"
         OLLAMA[Ollama Server]
-        LLAMA2[Llama 2 70B]
-        MISTRAL[Mistral 7B]
     end
     
     subgraph "VPS Infrastructure"
