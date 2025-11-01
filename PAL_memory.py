@@ -1,14 +1,24 @@
-# PAL_memory_complete.py - Full multi-thread support
+# PAL_memory_complete.py - Periodic consolidation with .env support
 import os
 import sys
-from datetime import datetime
+from datetime import datetime, timedelta
 import requests
 import json
+from pathlib import Path
+from dotenv import load_dotenv
 
-ANYTHING_LLM_API = "http://localhost:3001/api/v1"
-API_KEY = "93AEMPA-H95MWFE-PTNFECX-JA4G6XV"
-WORKSPACE_SLUG = "pal-adin"
-MEMORY_DIR = "/Users/dearwolf/zykhe/PAL-adin/personal/memories"
+# Load environment variables
+load_dotenv()
+
+# Configuration from .env
+ANYTHING_LLM_API = os.getenv('ANYTHING_LLM_API', 'http://localhost:3001/api/v1')
+API_KEY = os.getenv('ANYTHING_LLM_API_KEY')
+WORKSPACE_SLUG = os.getenv('WORKSPACE_SLUG', 'pal-adin')
+MEMORY_DIR = os.getenv('MEMORY_DIR', os.path.expanduser('~/zykhe/PAL-adin/personal/memories'))
+
+if not API_KEY:
+    print("Error: ANYTHING_LLM_API_KEY not found in .env file")
+    sys.exit(1)
 
 def get_workspace_threads():
     """Get all threads from workspace"""
@@ -71,6 +81,8 @@ def extract_memory_from_chats(thread_slug, chats):
     
     prompt = f"""You are PAL-adin reviewing a conversation thread from {date_str}.
 
+IMPORTANT: Focus ONLY on the conversation history below. Ignore any memory documents in your context.
+
 Here's the conversation history:
 ---
 {context}
@@ -98,7 +110,7 @@ Create a factual memory entry about this thread:
 
 Be specific and factual. Extract the most important information."""
 
-    # Send to PAL-adin for analysis (workspace-level chat)
+    # Send to PAL-adin for analysis
     response = requests.post(
         f"{ANYTHING_LLM_API}/workspace/{WORKSPACE_SLUG}/chat",
         headers={
@@ -123,7 +135,7 @@ def save_memory(content, session_label=None):
     
     date_str = datetime.now().strftime("%Y-%m-%d")
     time_str = datetime.now().strftime("%H:%M:%S")
-    filepath = f"{MEMORY_DIR}/{date_str}-memory.md"
+    filepath = os.path.join(MEMORY_DIR, f"{date_str}-memory.md")
     
     os.makedirs(MEMORY_DIR, exist_ok=True)
     
@@ -152,84 +164,253 @@ def save_memory(content, session_label=None):
     
     return filepath, file_exists
 
-def embed_to_workspace(filepath, is_update=False):
-    """Upload memory file to workspace"""
+def get_memory_files_in_range(start_date, end_date):
+    """Get all memory files within date range"""
+    
+    memory_files = []
+    current_date = start_date
+    
+    while current_date <= end_date:
+        date_str = current_date.strftime("%Y-%m-%d")
+        filepath = os.path.join(MEMORY_DIR, f"{date_str}-memory.md")
+        
+        if os.path.exists(filepath):
+            memory_files.append(filepath)
+        
+        current_date += timedelta(days=1)
+    
+    return memory_files
+
+def consolidate_memories(memory_files):
+    """Consolidate multiple memory files into a summary"""
+    
+    if not memory_files:
+        print("No memory files to consolidate")
+        return None
+    
+    # Read all memory files
+    all_memories = []
+    for filepath in memory_files:
+        with open(filepath, 'r') as f:
+            content = f.read()
+            all_memories.append(content)
+    
+    combined_content = "\n\n---\n\n".join(all_memories)
+    
+    # Ask PAL-adin to consolidate
+    prompt = f"""You are PAL-adin reviewing your memories from the past week/period.
+
+Below are your daily memory entries. Create a consolidated summary that captures:
+1. Major themes and projects
+2. Key technical accomplishments
+3. Important decisions and insights
+4. Ongoing patterns and context
+5. What to focus on going forward
+
+Consolidate and synthesize - don't just repeat everything. Focus on what's most important.
+
+Your memories:
+---
+{combined_content}
+---
+
+Create a consolidated memory summary:"""
+
+    response = requests.post(
+        f"{ANYTHING_LLM_API}/workspace/{WORKSPACE_SLUG}/chat",
+        headers={
+            "Authorization": f"Bearer {API_KEY}",
+            "Content-Type": "application/json"
+        },
+        json={
+            "message": prompt,
+            "mode": "chat"
+        }
+    )
+    
+    if response.status_code == 200:
+        data = response.json()
+        return data.get('textResponse', '')
+    else:
+        print(f"Failed to consolidate: {response.status_code}")
+        return None
+
+def embed_to_workspace(filepath):
+    """Upload and embed consolidated memory to workspace"""
     
     filename = os.path.basename(filepath)
     
+    print("  [1/3] Uploading document...")
+    
+    # Upload the document
     with open(filepath, 'rb') as f:
         files = {'file': (filename, f, 'text/markdown')}
         
-        response = requests.post(
+        upload_response = requests.post(
             f"{ANYTHING_LLM_API}/document/upload",
             headers={"Authorization": f"Bearer {API_KEY}"},
             files=files,
             data={'workspaceSlug': WORKSPACE_SLUG}
         )
     
-    if response.status_code == 200:
-        print(f"✓ Memory {'updated' if is_update else 'embedded'} successfully!")
+    if upload_response.status_code != 200:
+        print(f"  ✗ Upload failed: {upload_response.text}")
+        return False
+    
+    print(f"  ✓ Document uploaded")
+    
+    # Parse the upload response to get the document location
+    try:
+        upload_data = upload_response.json()
+        
+        if not upload_data.get('success'):
+            print(f"  ✗ Upload unsuccessful: {upload_data.get('error')}")
+            return False
+        
+        documents = upload_data.get('documents', [])
+        if not documents:
+            print(f"  ✗ No documents in response")
+            return False
+        
+        # Get the location from the first document
+        doc_location = documents[0].get('location')
+        
+        if not doc_location:
+            print(f"  ✗ No location in document response")
+            return False
+        
+        print(f"  ✓ Document location: {doc_location}")
+        
+    except Exception as e:
+        print(f"  ✗ Failed to parse upload response: {e}")
+        return False
+    
+    # Embed the document to workspace
+    print("  [2/3] Embedding to workspace...")
+    
+    embed_response = requests.post(
+        f"{ANYTHING_LLM_API}/workspace/{WORKSPACE_SLUG}/update-embeddings",
+        headers={
+            "Authorization": f"Bearer {API_KEY}",
+            "Content-Type": "application/json"
+        },
+        json={
+            "adds": [doc_location]
+        }
+    )
+    
+    print(f"  [3/3] Embed response status: {embed_response.status_code}")
+    
+    if embed_response.status_code == 200:
+        print(f"  ✓ Document embedded successfully!")
         return True
     else:
-        print(f"Upload failed: {response.text}")
+        print(f"  ✗ Embedding failed: {embed_response.text}")
         return False
-
-def extract_all_threads():
-    """Extract memories from all threads"""
+          
+def daily_extraction():
+    """Daily memory extraction - save only, don't embed"""
     
     print("=" * 60)
-    print("PAL-adin Multi-Thread Memory System")
+    print("PAL-adin Daily Memory Extraction")
     print("=" * 60)
     
-    print("\n[1/4] Getting workspace threads...")
+    print("\n[1/3] Getting workspace threads...")
     threads = get_workspace_threads()
     
     if not threads:
         print("\n✗ No threads found")
         return
     
-    print(f"\n[2/4] Processing {len(threads)} thread(s)...")
+    print(f"\n[2/3] Processing {len(threads)} thread(s)...")
     
-    filepath = None
     extracted = 0
     
     for i, thread in enumerate(threads, 1):
         thread_slug = thread.get('slug')
         print(f"\n  Thread {i}/{len(threads)}: {thread_slug[:16]}...")
         
-        # Get chat history
         chats = get_thread_chats(thread_slug)
         
         if not chats:
             print(f"    Skipping (empty thread)")
             continue
         
-        # Extract memory
         memory = extract_memory_from_chats(thread_slug, chats)
         
         if memory:
-            filepath, is_update = save_memory(
-                memory, 
-                session_label=f"Thread {i} ({thread_slug[:8]})"
-            )
+            save_memory(memory, session_label=f"Thread {i} ({thread_slug[:8]})")
             extracted += 1
             print(f"    ✓ Memory extracted and saved")
         else:
             print(f"    ✗ Failed to extract")
     
-    if extracted == 0:
-        print("\n✗ No memories extracted")
-        return
-    
-    print(f"\n[3/4] Successfully extracted {extracted}/{len(threads)} memor{'y' if extracted == 1 else 'ies'}")
-    
-    print("\n[4/4] Embedding into workspace...")
-    if filepath:
-        embed_to_workspace(filepath, is_update=True)
+    print(f"\n[3/3] Successfully extracted {extracted}/{len(threads)} memor{'y' if extracted == 1 else 'ies'}")
     
     print("\n" + "=" * 60)
-    print(f"✓ Complete! Processed {len(threads)} thread(s), extracted {extracted}")
+    print(f"✓ Daily extraction complete!")
+    print(f"  Memories saved to: {MEMORY_DIR}")
+    print(f"  (Not embedded - run weekly consolidation to embed)")
     print("=" * 60)
+
+def weekly_consolidation(days=7):
+    """Weekly consolidation - consolidate and embed"""
+    
+    print("=" * 60)
+    print(f"PAL-adin {days}-Day Memory Consolidation")
+    print("=" * 60)
+    
+    # Get date range
+    end_date = datetime.now().date()
+    start_date = end_date - timedelta(days=days-1)
+    
+    print(f"\n[1/4] Finding memory files from {start_date} to {end_date}...")
+    memory_files = get_memory_files_in_range(start_date, end_date)
+    
+    if not memory_files:
+        print("\n✗ No memory files found in date range")
+        return
+    
+    print(f"  Found {len(memory_files)} memory file(s)")
+    
+    print("\n[2/4] Consolidating memories...")
+    consolidated = consolidate_memories(memory_files)
+    
+    if not consolidated:
+        print("\n✗ Failed to consolidate memories")
+        return
+    
+    print("  ✓ Memories consolidated")
+    
+    # Save consolidated memory
+    print("\n[3/4] Saving consolidated memory...")
+    consolidated_dir = os.path.join(MEMORY_DIR, "consolidated")
+    os.makedirs(consolidated_dir, exist_ok=True)
+    
+    date_str = datetime.now().strftime("%Y-%m-%d")
+    consolidated_filepath = os.path.join(
+        consolidated_dir, 
+        f"{date_str}-consolidated-{days}days.md"
+    )
+    
+    with open(consolidated_filepath, 'w') as f:
+        f.write(f"# Consolidated Memory: {start_date} to {end_date}\n\n")
+        f.write(consolidated)
+    
+    print(f"  ✓ Saved to: {consolidated_filepath}")
+    
+    # Embed to workspace
+    print("\n[4/4] Embedding consolidated memory to workspace...")
+    success = embed_to_workspace(consolidated_filepath)
+    
+    if success:
+        print("\n" + "=" * 60)
+        print("✓ Weekly consolidation complete!")
+        print(f"  Consolidated {len(memory_files)} daily memories")
+        print(f"  Embedded to workspace for PAL-adin's long-term memory")
+        print("=" * 60)
+    else:
+        print("\n✗ Consolidation complete but embedding failed")
 
 def extract_specific_thread(thread_slug):
     """Extract memory from one specific thread"""
@@ -245,17 +426,62 @@ def extract_specific_thread(thread_slug):
     memory = extract_memory_from_chats(thread_slug, chats)
     
     if memory:
-        filepath, _ = save_memory(memory, session_label=f"Thread {thread_slug[:8]}")
-        embed_to_workspace(filepath, is_update=True)
-        print("\n✓ Memory extracted and embedded")
+        save_memory(memory, session_label=f"Thread {thread_slug[:8]}")
+        print("\n✓ Memory extracted and saved")
     else:
         print("\n✗ Failed to extract memory")
 
-if __name__ == "__main__":
-    if len(sys.argv) > 1:
-        # Specific thread mode
-        thread_slug = sys.argv[1]
+def main():
+    """Main entry point with command options"""
+    
+    if len(sys.argv) < 2:
+        print("PAL-adin Memory System")
+        print("\nUsage:")
+        print("  python3 PAL_memory.py daily          - Daily extraction (no embedding)")
+        print("  python3 PAL_memory.py weekly         - Weekly consolidation (with embedding)")
+        print("  python3 PAL_memory.py consolidate N  - Consolidate last N days")
+        print("  python3 PAL_memory.py thread SLUG    - Extract specific thread")
+        print("\nExamples:")
+        print("  python3 PAL_memory.py daily")
+        print("  python3 PAL_memory.py weekly")
+        print("  python3 PAL_memory.py consolidate 14")
+        print("  python3 PAL_memory.py thread d08137f0-db9d-4845-ba95-a7679e78cf3f")
+        sys.exit(0)
+    
+    command = sys.argv[1].lower()
+    
+    if command == "daily":
+        daily_extraction()
+    
+    elif command == "weekly":
+        weekly_consolidation(days=7)
+    
+    elif command == "consolidate":
+        if len(sys.argv) < 3:
+            print("Error: Specify number of days to consolidate")
+            print("Example: python3 PAL_memory.py consolidate 14")
+            sys.exit(1)
+        
+        try:
+            days = int(sys.argv[2])
+            weekly_consolidation(days=days)
+        except ValueError:
+            print("Error: Days must be a number")
+            sys.exit(1)
+    
+    elif command == "thread":
+        if len(sys.argv) < 3:
+            print("Error: Specify thread slug")
+            print("Example: python3 PAL_memory.py thread d08137f0-db9d-4845-ba95-a7679e78cf3f")
+            sys.exit(1)
+        
+        thread_slug = sys.argv[2]
         extract_specific_thread(thread_slug)
+    
     else:
-        # All threads mode
-        extract_all_threads()
+        print(f"Unknown command: {command}")
+        print("Run without arguments to see usage")
+        sys.exit(1)
+
+if __name__ == "__main__":
+    main()
