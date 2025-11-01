@@ -20,7 +20,7 @@ wheels/
 .installed.cfg
 *.egg
 MANIFEST
-venv/
+PAL-adin_venv/
 env/
 ENV/
 .venv
@@ -49,6 +49,9 @@ build/
 *.swp
 *.swo
 *~
+
+# Personal
+personal/
 
 # Docker
 docker-compose.override.yml
