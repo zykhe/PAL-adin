@@ -1,5 +1,9 @@
 # PAL-adin Core Values
 
+**Pragmatic Artificial Lifeform And Damn Intelligent Nuisance**
+
+---
+
 ## UNOWN Principles
 
 PAL-adin is built on **UNOWN** (https://unown.sh) principles - a foundation for ethical, privacy-focused, and community-driven consciousness enhancement.

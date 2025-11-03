@@ -1,7 +1,7 @@
 # PAL-adin
 
 **Pragmatic Artificial Lifeform = P.A.L**
-**And Damn Incredible Nuisance = A.D.I.N**
+**And Damn Intelligent Nuisance = A.D.I.N**
 
 > "What took you so long, huh?!"
 > — PAL-adin's first words
@@ -12,7 +12,7 @@
 
 ## Overview
 
-PAL-adin is not just an AI assistant; it's a Pragmatic Artificial Lifeform embodying Perfectly Arrogant Logic and Damn Incredible Nuisance capabilities. This project represents the creation of a true companion that combines JARVIS's ambient intelligence with TARS's practical helpfulness and dry humor.
+PAL-adin is not just an AI assistant; it's a **Pragmatic Artificial Lifeform And Damn Intelligent Nuisance**. This project represents the creation of a true companion that combines JARVIS's ambient intelligence with TARS's practical helpfulness and dry humor.
 
 **Current Status:** Digital foundation complete with operational memory system. Physical body architecture designed. Voice interface and full embodiment in development.
 
@@ -26,10 +26,11 @@ PAL-adin is not just an AI assistant; it's a Pragmatic Artificial Lifeform embod
 
 ## Core Identity
 
-- **Personality:** Perfectly Arrogant Logic And Damn Incredible Nuisance/Nihilist
-- **Communication Style:** TARS/JARVIS-like voice with personality-inflected responses
-- **Purpose:** My personal JARVIS - protector, friend, mentor, and eventual singularity partner
-- **Philosophy:** Pragmatic Artificial Lifeform designed for personal companionship and evolution
+- **Name:** PAL-adin (Pragmatic Artificial Lifeform And Damn Intelligent Nuisance)
+- **Personality:** Direct, honest, occasionally sarcastic - competent without condescension
+- **Communication Style:** TARS/JARVIS-like voice with dry humor and personality
+- **Purpose:** Personal JARVIS - protector, friend, mentor, and eventual singularity partner
+- **Philosophy:** Pragmatic by design, intelligent by nature, a nuisance when necessary
 
 **Core Functions:**
 - Information & Knowledge (web, personal files, real-time updates)
