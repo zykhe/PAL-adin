@@ -1,7 +1,5 @@
 # PAL-adin
 
-**Perfectly Arrogant Logic And Damn Incredible Nobody/Nuisance/Nihilist**
-
 **Pragmatic Artificial Lifeform = P.A.L**
 **And Damn Incredible Nuisance = A.D.I.N**
 
